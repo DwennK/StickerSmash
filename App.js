@@ -1,4 +1,4 @@
-import 'crypto'; // Add this line to avoir error on web while in development
+import crypto from 'crypto-browserify'; // Add this line to avoir error on web while in development
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Image } from 'react-native';
 
