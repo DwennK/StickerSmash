@@ -1,3 +1,4 @@
+import 'crypto'; // Add this line to avoir error on web while in development
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Image } from 'react-native';
 
@@ -7,32 +8,20 @@ import ImageViewer from './components/ImageViewer';
 const PlaceholderImage = require('./assets/images/background-image.png');
 
 export default function App() {
-  const pickImageAsync = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      quality: 1,
-    });
-
-    if (!result.canceled) {
-      console.log(result);
-    } else {
-      alert('You did not select any image.');
-    }
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <ImageViewer placeholderImageSource={PlaceholderImage}></ImageViewer>
+        <ImageViewer placeholderImageSource={PlaceholderImage} />
       </View>
       <View style={styles.footerContainer}>
-        <Button label="Choose a photo" />
+        <Button theme="primary" label="Choose a photo" />
         <Button label="Use this photo" />
       </View>
       <StatusBar style="auto" />
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
