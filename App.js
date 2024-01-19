@@ -1,4 +1,3 @@
-import crypto from 'crypto-browserify'; // Add this line to avoir error on web while in development
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Image } from 'react-native';
 
@@ -25,7 +24,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#25292e',
+    backgroundColor: '25292e',
     alignItems: 'center',
   },
   imageContainer: {
