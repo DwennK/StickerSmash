@@ -4,7 +4,17 @@ Test app to learn React Native
 
 ## Installation
 
-Use yarn
+Install yarn
+
+```cmd
+npm install --global yarn
+```
+Then use yarn install
+
+```cmd
+yarn install
+```
+
 
 
 ## Usage
