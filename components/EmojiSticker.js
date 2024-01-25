@@ -9,6 +9,27 @@ import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-na
 export default function EmojiSticker({ imageSize, stickerSource }) {
 //Declarations
 const scaleImage = useSharedValue(imageSize);
+const translateX = useSharedValue(0);
+const translateY = useSharedValue(0);
+
+const drag = Gesture.Pan()
+.onChange((event) => {
+  translateX.value += event.changeX;
+  translateY.value += event.changeY;
+});
+
+const containerStyle = useAnimatedStyle(() => {
+  return {
+    transform: [
+      {
+        translateX: translateX.value,
+      },
+      {
+        translateY: translateY.value,
+      },
+    ],
+  };
+});
 
 const doubleTap = Gesture.Tap()
   .numberOfTaps(2)
@@ -27,15 +48,17 @@ const imageStyle = useAnimatedStyle(() => {
 
 //
   return (
-    <Animated.View style={{ top: -350 }}>
-      <GestureDetector gesture={doubleTap}>
-        <Animated.Image
-          source={stickerSource}
-          resizeMode="contain"
-          style={[imageStyle, { width: imageSize, height: imageSize }]}
-        />
-      </GestureDetector>
+    <GestureDetector gesture={drag}>
+      <Animated.View style={[containerStyle, { top: -350 }]}>
+        <GestureDetector gesture={doubleTap}>
+          <Animated.Image
+            source={stickerSource}
+            resizeMode="contain"
+            style={[imageStyle, { width: imageSize, height: imageSize }]}
+          />
+        </GestureDetector>
 
-    </Animated.View>
+      </Animated.View>
+    </GestureDetector>
   );
 }
