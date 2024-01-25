@@ -27,7 +27,7 @@ const imageStyle = useAnimatedStyle(() => {
 
 //
   return (
-    <View style={{ top: -350 }}>
+    <Animated.View style={{ top: -350 }}>
       <GestureDetector gesture={doubleTap}>
         <Animated.Image
           source={stickerSource}
@@ -36,6 +36,6 @@ const imageStyle = useAnimatedStyle(() => {
         />
       </GestureDetector>
 
-    </View>
+    </Animated.View>
   );
 }
