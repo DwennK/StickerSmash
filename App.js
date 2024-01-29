@@ -3,14 +3,15 @@ import { StyleSheet, View, Image } from 'react-native';
 import Button from './components/Button';
 import ImageViewer from './components/ImageViewer';
 import * as ImagePicker from 'expo-image-picker';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import CircleButton from './components/CircleButton';
 import IconButton from './components/IconButton';
 import EmojiPicker from './components/EmojiPicker';
 import EmojiList from './components/EmojiList';
 import EmojiSticker from './components/EmojiSticker';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-
+import * as MediaLibrary from 'expo-media-library';
+import { captureRef } from 'react-native-view-shot'; //To allow the user to take a screenshot within the app, we'll use react-native-view-shot. It allows capturing a <View> as an image.
 
 const PlaceholderImage = require('./assets/images/background-image.png');
 
@@ -19,6 +20,8 @@ export default function App() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [showAppOptions, setShowAppOptions] = useState(false);
   const [pickedEmoji, setPickedEmoji] = useState(null);
+  const [status, requestPermission] = MediaLibrary.usePermissions();
+  const imageRef = useRef();
 
   const onReset = () => {
     setShowAppOptions(false);
@@ -33,8 +36,25 @@ export default function App() {
   };
 
   const onSaveImageAsync = async () => {
-    // we will implement this later
+    try {
+      const localUri = await captureRef(imageRef, {
+        height: 440,
+        quality: 1,
+      });
+
+      await MediaLibrary.saveToLibraryAsync(localUri);
+      if (localUri) {
+        alert("Saved!");
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
+
+  //Initially, when the app loads for the first time and the permission status is neither granted nor denied, the value of the status is null. When asked for permission, a user can either grant the permission or deny it. We can add a condition to check if it is null, and if it is, trigger the requestPermission() method.
+  if (status === null) {
+    requestPermission();
+  }
 
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -54,10 +74,13 @@ export default function App() {
 
     <GestureHandlerRootView style={styles.container}>
       <View style={styles.imageContainer}>
-      <ImageViewer
-          placeholderImageSource={PlaceholderImage}
-          selectedImage={selectedImage}
-        />
+      <View ref={imageRef} collapsable={false}>
+        <ImageViewer
+            placeholderImageSource={PlaceholderImage}
+            selectedImage={selectedImage}
+          />
+      </View>
+
         {pickedEmoji && <EmojiSticker imageSize={40} stickerSource={pickedEmoji} />}
       </View>
       {showAppOptions ? (
