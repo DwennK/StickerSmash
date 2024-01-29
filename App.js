@@ -13,8 +13,10 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import * as MediaLibrary from 'expo-media-library';
 import { captureRef } from 'react-native-view-shot'; //To allow the user to take a screenshot within the app, we'll use react-native-view-shot. It allows capturing a <View> as an image.
 import domtoimage from 'dom-to-image'; //Screenshot for Web
+import * as crypto from 'expo-crypto'; 
 
 const PlaceholderImage = require('./assets/images/background-image.png');
+
 
 export default function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
