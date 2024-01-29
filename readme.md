@@ -1,31 +1,26 @@
 # StickerSmash
 
-Test app to learn React Native
+Test app to learn React Native. Works on Web, IOS, Android.
+With StickSmash, you can :
+    - Select a picture from the gallery of your device
+    - Add Stickers to the selected picture
+    - Drag and Drop stickers, move them
+    - Save the picture to your device gallery
 
 ## Installation
-
-Install yarn
-
 ```cmd
-npm install --global yarn
-```
-Then use yarn install
-
-```cmd
-yarn install
+npm install
 ```
 
-
+## Update
+```cmd
+npm update
+```
 
 ## Usage
 
 ```cmd
-yarn start
-```
-
-or
-```cmd
-expo start
+npx expo start
 ```
 
 ## Contributing
