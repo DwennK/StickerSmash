@@ -2,10 +2,10 @@
 
 Test app to learn React Native. Works on Web, IOS, Android.
 With StickSmash, you can :
-    - Select a picture from the gallery of your device
-    - Add Stickers to the selected picture
-    - Drag and Drop stickers, move them
-    - Save the picture to your device gallery
+*   Select a picture from the gallery of your device
+*  Add Stickers to the selected picture
+*  Drag and Drop stickers, move them
+*  Save the picture to your device gallery
 
 ## Installation
 ```cmd
