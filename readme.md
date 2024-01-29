@@ -1,6 +1,9 @@
 # StickerSmash
 
-Test app to learn React Native. Works on Web, IOS, Android.
+Test app to learn React Native.
+It's built with Expo. Expo is a set of tools build on top of React Native to make it easier to build React Native apps.
+
+ Works on Web, IOS, Android.
 With StickSmash, you can :
 *   Select a picture from the gallery of your device
 *  Add Stickers to the selected picture
